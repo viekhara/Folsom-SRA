@@ -25,19 +25,19 @@ map.on('click', 'points-layer', (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
     const properties = e.features[0].properties;
 
-    const popupContent = `
-        <div>
-            <h3>${properties.feature_name}</h3>
-            ${properties.Images ? `<img src="${properties.Images}" alt="${properties.feature_name}" style="width:100%; border-radius:5px; margin-bottom:10px;">` : ''}
-            ${properties['Image description '] ? `<p>${properties['Image description ']}</p>` : ''}
-            ${properties.rop_renaming_meaning ? `<p><strong>Meaning:</strong> ${properties.rop_renaming_meaning}</p>` : ''}
-            ${properties.rop_renaming_tribal_partner ? `<p><strong>Tribal Partner:</strong> ${properties.rop_renaming_tribal_partner}</p>` : ''}
-        </div>
-    `;
+const popupContent = `
+    <div>
+        ${properties.Images ? `<img src="${properties.Images}" alt="photo" style="width:100%; border-radius:5px; margin-bottom:10px;">` : ''}
+        ${properties['Image description '] ? `<p>${properties['Image description ']}</p>` : ''}
+        ${properties.feature_name ? `<h3>${properties.feature_name}</h3>` : ''}
+        ${properties.rop_renaming_tribal_partner ? `<p><strong>Tribal Partner:</strong> ${properties.rop_renaming_tribal_partner}</p>` : ''}
+    </div>
+`;
 
-    new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(popupContent)
-        .addTo(map);
+new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML(popupContent)
+    .addTo(map);
 });
+            
 });
