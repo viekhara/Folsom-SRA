@@ -39,5 +39,4 @@ new mapboxgl.Popup()
     .setHTML(popupContent)
     .addTo(map);
 });
-            
 });
